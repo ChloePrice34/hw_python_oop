@@ -24,7 +24,7 @@ class InfoMessage:
 class Training:
     """Базовый класс тренировки."""
     LEN_STEP: float = 0.65
-    M_IN_KM: float= 1000
+    M_IN_KM: float = 1000
 
     def __init__(self,
                  action: int,
@@ -67,7 +67,8 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         cal = self.CF_RUN_1 * self.get_mean_speed() - self.CF_RUN_2
-        calories = cal * self.weight / self.M_IN_KM * self.duration * self.H_TO_MIN
+        cal_cnt = cal * self.weight / self.M_IN_KM
+        calories = cal_cnt * self.duration * self.H_TO_MIN
         return calories
 
 
@@ -144,4 +145,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
-
